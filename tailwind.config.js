@@ -4,21 +4,21 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["components/*.templ"],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1rem",
-        mobile: "2rem",
-        tablet: "4rem",
-        desktop: "5rem",
+    fontFamily: {
+      "geist-light": ["Geist-Light", "sans-serif"],
+      "geist-mono-light": ["GeistMono-Light", "sans-serif"],
+    },
+    keyframes: {
+      "fade-in": {
+        "0%": { opacity: "0" },
+        "100%": { opacity: "1" },
       },
     },
+    animation: {
+      "fade-in": "fade-in 500ms ease-in-out forwards",
+    },
     extend: {
-      colors: {
-        primary: colors.blue,
-        secondary: colors.yellow,
-        neutral: colors.gray,
-      },
+      colors: {},
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],

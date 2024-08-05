@@ -1,0 +1,16 @@
+package components
+
+import "github.com/midasvanveen/portfolio/v2/db"
+
+templ Gallery(projects []db.Project) {
+	<div>
+		<div class="container flex flex-row flex-wrap mx-auto max-w-2/3 md:max-w-full">
+			for _, project := range projects {
+				<button class="bg-rich_black-200 m-3 p-5 rounded-lg text-platinum min-w-64 text-left">
+					<h1 class="text-2xl text-rose_red">{ project.Name }</h1>
+					<p>{ project.Description }</p>
+				</button>
+			}
+		</div>
+	</div>
+}

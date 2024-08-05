@@ -1,6 +1,6 @@
 package components
 
-import middleware "github.com/midasvanveen/portfolio/v2/middleware"
+import "github.com/midasvanveen/portfolio/v2/middleware"
 
 templ header(title string) {
 	<head>
@@ -9,28 +9,50 @@ templ header(title string) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script src="static/script/htmx.min.js" nonce={ middleware.GetHtmxNonce(ctx) }></script>
 		<script src="static/script/response-targets.js" nonce={ middleware.GetResponseTargetsNonce(ctx) }></script>
-		<link rel="stylesheet" href="static/css/style.min.css" nonce={ middleware.GetTwNonce(ctx) }/>
+		<script defer src="static/script/alpine.min.js" nonce={ middleware.GetAlpineNonce(ctx) }></script>
+		<link rel="stylesheet" href="static/css/style.min.css"/>
 	</head>
 }
 
-templ nav() {
-	<nav class="p-4">
-		<div class="container flex justify-between">
-			<ol class="flex space-x-4">
-				<li>
-					<a class="text-gray-200" href="/">Home</a>
-				</li>
+templ nav(curr_page string) {
+	<nav class={ "flex", "flex-col", "p-10", "min-w-64" } hx-boost="true">
+		<div>
+			<div class={ "text-lg", "py-2" }>Midas van Veen</div>
+			<ol>
+				<li
+					class={ "navlink", templ.KV("text-white", curr_page=="/") }
+					if curr_page == "/" {
+						aria-current="page"
+					}
+				><a href="/">00. About</a></li>
+				<li
+					class={ "navlink", templ.KV("text-white", curr_page=="/resume") }
+					if curr_page == "/resume" {
+						aria-current="page"
+					}
+				><a href="/resume">01. Resume</a></li>
+				<!-- <li -->
+				<!-- 	class={ "navlink", templ.KV("text-white", curr_page=="/gallery") } -->
+				<!-- 	if curr_page == "/gallery" { -->
+				<!-- 		aria-current="page" -->
+				<!-- 	} -->
+				<!-- ><a href="/gallery">02. Gallery</a></li> -->
+				<li
+					class={ "navlink", templ.KV("text-white", curr_page=="/contact") }
+					if curr_page == "/contact" {
+						aria-current="page"
+					}
+				><a href="/contact">02. Contact</a></li>
 			</ol>
-			<ol class="flex space-x-4"></ol>
 		</div>
 	</nav>
 }
 
-templ Layout(contents templ.Component, title string) {
+templ Layout(contents templ.Component, title, curr_page string) {
 	@header(title)
-	<body class="flex flex-col h-full">
-		@nav()
-		<main class="flex-1 container ">
+	<body class={ "bg-black", "text-white", "flex", "flex-col", "md:flex-row" }>
+		@nav(curr_page)
+		<main class="flex-1">
 			@contents
 		</main>
 	</body>

@@ -16,6 +16,7 @@ var NonceKey key = "nonces"
 type Nonces struct {
 	Htmx            string
 	ResponseTargets string
+	Alpine          string
 	Tw              string
 	HtmxCSSHash     string
 }
@@ -39,18 +40,17 @@ func CSPMiddleware(next http.Handler) http.Handler {
 		nonceSet := Nonces{
 			Htmx:            generateRandomString(16),
 			ResponseTargets: generateRandomString(16),
-			Tw:              generateRandomString(16),
-			HtmxCSSHash:     "sha256-pgn1TCGZX6O77zDvy0oTODMOxemn0oj0LeCnQTRj7Kg=",
+			Alpine:          generateRandomString(16),
 		}
 
 		// set nonces in context
 		ctx := context.WithValue(r.Context(), NonceKey, nonceSet)
 		// insert the nonces into the content security policy header
-		cspHeader := fmt.Sprintf("default-src 'self'; script-src 'nonce-%s' 'nonce-%s' ; style-src 'nonce-%s' '%s';",
+		cspHeader := fmt.Sprintf("default-src 'self'; script-src 'nonce-%s' 'nonce-%s' 'nonce-%s' ; style-src 'self' 'unsafe-inline';",
 			nonceSet.Htmx,
 			nonceSet.ResponseTargets,
-			nonceSet.Tw,
-			nonceSet.HtmxCSSHash)
+			nonceSet.Alpine,
+		)
 		w.Header().Set("Content-Security-Policy", cspHeader)
 
 		next.ServeHTTP(w, r.WithContext(ctx))
@@ -85,7 +85,7 @@ func GetResponseTargetsNonce(ctx context.Context) string {
 	return nonceSet.ResponseTargets
 }
 
-func GetTwNonce(ctx context.Context) string {
+func GetAlpineNonce(ctx context.Context) string {
 	nonceSet := GetNonces(ctx)
-	return nonceSet.Tw
+	return nonceSet.Alpine
 }

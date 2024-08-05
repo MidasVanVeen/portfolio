@@ -1,0 +1,50 @@
+package components
+
+import (
+	"fmt"
+	"github.com/midasvanveen/portfolio/v2/db"
+)
+
+templ Resume(entries []db.ResumeEntry) {
+	<div class={ "font-geist-light", "text-sm", "p-10", "md:py-24" }>
+		for _, entry := range entries {
+			<div class={ "flex", "flex-col-reverse", "md:flex-row" }>
+				<p class={ "my-3", "md:w-32", "md:my-0", "animate-fade-in" }>{ entry.TimePeriod }</p>
+				<div class={ "flex", "flex-col", "w-full", "md:w-[540px]", }>
+					<div class={ "flex", "flex-row", "justify-between", "w-full", "mb-2", "animate-fade-in" }>
+						if entry.URL != "" {
+							<a
+								class={ "hover:underline" }
+								href={ templ.URL(entry.URL) }
+							>{ fmt.Sprintf("%s ↗", entry.Title) }</a>
+						} else {
+							<p>{ entry.Title }</p>
+						}
+						<p>{ entry.Position }</p>
+					</div>
+					for i, link := range entry.Links {
+						<a
+							class={
+								"text-neutral-500",
+								"mt-1",
+								"animate-fade-in",
+								"opacity-0",
+								fmt.Sprintf("[animation-delay:%dms]", 100*i),
+								templ.KV("hover:text-white hover:underline", link.URL != ""),
+							}
+							if link.URL != "" {
+								href={ templ.URL(link.URL) }
+							}
+						>
+							if link.URL != "" {
+								{ fmt.Sprintf("%s ↗", link.Title) }
+							} else {
+								{ link.Title }
+							}
+						</a>
+					}
+				</div>
+			</div>
+		}
+	</div>
+}

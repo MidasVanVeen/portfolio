@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/midasvanveen/portfolio/v2/db"
 	"github.com/midasvanveen/portfolio/v2/handlers"
 	"github.com/midasvanveen/portfolio/v2/middleware"
 
@@ -19,7 +20,8 @@ import (
 )
 
 type Config struct {
-	Port string `envconfig:"PORT" default:":4000"`
+	Port         string `envconfig:"PORT" default:":4000"`
+	DatabaseName string `envconfig:"DATABASE" default:"portfolio.db"`
 }
 
 func loadConfig() *Config {
@@ -37,6 +39,16 @@ func main() {
 
 	cfg := loadConfig()
 
+	database := db.MustOpen(cfg.DatabaseName)
+
+	resumeStore := db.NewResumeStore(database)
+	projectsStore := db.NewProjectStore(database)
+	// projectsStore.CreateProject("UNLOCK Biocontroller", "The UNLOCK biocontroller project was initiated to address the lack of flexibility in commercially available biocontrollers used in bioreactor cultivation. Traditional biocontrollers fall short in meeting the specific needs of researchers pushing the boundaries of cultivation techniques and processes.", "https://gitlab.com/m-unlock/pcp/bio-c-kernel")
+	// resumeStore.CreateResumeEntry("UNLOCK Biocontroller", "https://m-unlock.nl/", "2023-present", "Software Engineer", []db.ResumeLink{
+	// 	{Title: "Lead the development of the GUI"},
+	// 	{Title: "Wrote drivers for industrial sensors and actuators"},
+	// })
+	//
 	{
 		staticServer := http.FileServer(http.Dir("./static"))
 		r.Handle("/static/*", http.StripPrefix("/static/", staticServer))
@@ -49,9 +61,11 @@ func main() {
 			middleware.CSPMiddleware,
 		)
 
-		r.NotFound(handlers.NewNotFoundHandler().HandlerFunc)
-
-		r.HandleFunc("/", handlers.NewIndexHandler().HandlerFunc)
+		r.NotFound(handlers.NotFoundHandler)
+		r.HandleFunc("/", handlers.IndexHandler)
+		r.HandleFunc("/resume", handlers.NewResumeHandler(resumeStore).ServeHTTP)
+		r.HandleFunc("/gallery", handlers.NewGalleryHandler(projectsStore).ServeHTTP)
+		r.HandleFunc("/contact", handlers.ContactHandler)
 	})
 
 	killSig := make(chan os.Signal, 1)
@@ -89,6 +103,4 @@ func main() {
 		logger.Error("Server shutdown failed", slog.Any("err", err))
 		os.Exit(1)
 	}
-
-	logger.Info("Server shutdown complete")
 }

@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Geist-Light";
+    src:
+      url(/static/fonts/Geist-Light.woff2) format("woff2"),
+      url(/static/fonts/Geist-Light.woff) format("font-woff"),
+      url(/static/fonts/Geist-Light.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: "GeistMono-Light";
+    src:
+      url(/static/fonts/GeistMono-Light.woff2) format("woff2"),
+      url(/static/fonts/GeistMono-Light.woff) format("font-woff"),
+      url(/static/fonts/GeistMono-Light.ttf) format("truetype");
+  }
+}
+
+@layer components {
+  .navlink {
+    @apply my-4 md:my-2 transition-all duration-200 font-geist-light text-sm text-neutral-500 hover:text-white hover:underline;
+  }
+}
+
