@@ -1,0 +1,5 @@
+<div><div class=\"container flex flex-row flex-wrap mx-auto max-w-2/3 md:max-w-full\">
+<button class=\"bg-rich_black-200 m-3 p-5 rounded-lg text-platinum min-w-64 text-left\"><h1 class=\"text-2xl text-rose_red\">
+</h1><p>
+</p></button>
+</div></div>

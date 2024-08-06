@@ -5,7 +5,7 @@ tmp_dir = "tmp"
 [build]
 args_bin = []
 bin = "a.out"
-cmd = "make run"
+cmd = "go build -o a.out"
 delay = 0
 exclude_dir = ["testdata"]
 exclude_file = []

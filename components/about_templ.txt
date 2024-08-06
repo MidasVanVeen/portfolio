@@ -1,0 +1,8 @@
+<div class=\"
+\">
+<p class=\"
+\">Hello, I'm Midas. I would classify myself as a general purpose developer. I have experience with a wide variety of languages, tools and frameworks, my favourites being rust, go and c.</p><br>
+<p class=\"
+\">I am currently studying computer science at the TU Delft in my home country of the Netherlands, with a minor in systems engineering.</p><br>
+<p class=\"
+\"></p></div>

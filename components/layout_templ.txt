@@ -1,0 +1,25 @@
+<head><title>
+</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"static/script/htmx.min.js\" nonce=\"
+\"></script><script src=\"static/script/response-targets.js\" nonce=\"
+\"></script><script defer src=\"static/script/alpine.min.js\" nonce=\"
+\"></script><link rel=\"stylesheet\" href=\"static/css/style.min.css\"></head>
+<nav class=\"
+\" hx-boost=\"true\"><div>
+<div class=\"
+\">Midas van Veen</div><ol>
+<li class=\"
+\"
+ aria-current=\"page\"
+><a href=\"/\">00. About</a></li>
+<li class=\"
+\"
+ aria-current=\"page\"
+><a href=\"/resume\">01. Resume</a></li><!-- <li --><!-- \tclass={ \"navlink\", templ.KV(\"text-white\", curr_page==\"/gallery\") } --><!-- \tif curr_page == \"/gallery\" { --><!-- \t\taria-current=\"page\" --><!-- \t} --><!-- ><a href=\"/gallery\">02. Gallery</a></li> -->
+<li class=\"
+\"
+ aria-current=\"page\"
+><a href=\"/contact\">02. Contact</a></li></ol></div></nav>
+<body class=\"
+\">
+<main class=\"flex-1\">
+</main></body>

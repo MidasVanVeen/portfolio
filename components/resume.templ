@@ -5,11 +5,15 @@ import (
 	"github.com/midasvanveen/portfolio/v2/db"
 )
 
+css DelayedAnimation(delay int) {
+	animation-delay: { fmt.Sprintf("%dms", 100*delay) };
+}
+
 templ Resume(entries []db.ResumeEntry) {
 	<div class={ "font-geist-light", "text-sm", "p-10", "md:py-24" }>
 		for _, entry := range entries {
-			<div class={ "flex", "flex-col-reverse", "md:flex-row" }>
-				<p class={ "my-3", "md:w-32", "md:my-0", "animate-fade-in" }>{ entry.TimePeriod }</p>
+			<div class={ "flex", "flex-col", "md:flex-row" }>
+				<p class={ "mb-3", "md:w-32", "md:mb-0", "animate-fade-in" }>{ entry.TimePeriod }</p>
 				<div class={ "flex", "flex-col", "w-full", "md:w-[540px]", }>
 					<div class={ "flex", "flex-row", "justify-between", "w-full", "mb-2", "animate-fade-in" }>
 						if entry.URL != "" {
@@ -29,7 +33,7 @@ templ Resume(entries []db.ResumeEntry) {
 								"mt-1",
 								"animate-fade-in",
 								"opacity-0",
-								fmt.Sprintf("[animation-delay:%dms]", 100*i),
+								DelayedAnimation(i),
 								templ.KV("hover:text-white hover:underline", link.URL != ""),
 							}
 							if link.URL != "" {
