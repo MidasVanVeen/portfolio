@@ -2,7 +2,7 @@
 </title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"static/script/htmx.min.js\" nonce=\"
 \"></script><script src=\"static/script/response-targets.js\" nonce=\"
 \"></script><script defer src=\"static/script/alpine.min.js\" nonce=\"
-\"></script><link rel=\"stylesheet\" href=\"static/css/style.min.css\"></head>
+\"></script><link rel=\"stylesheet\" href=\"static/css/style.min.css\"><link rel=\"icon\" type=\"image/x-icon\" href=\"/static/favicon.ico\"></head>
 <nav class=\"
 \" hx-boost=\"true\"><div>
 <div class=\"
