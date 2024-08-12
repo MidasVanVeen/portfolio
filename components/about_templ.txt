@@ -3,6 +3,8 @@
 <p class=\"
 \">Hello, I'm Midas. I would classify myself as a general purpose developer. I have experience with a wide variety of languages, tools and frameworks, my favourites being rust, go and c.</p><br>
 <p class=\"
-\">I am currently studying computer science at the TU Delft in my home country of the Netherlands, with a minor in systems engineering.</p><br>
+\">I am currently studying computer science at the TU Delft in my home country of the Netherlands,  with a minor in systems engineering.</p><br>
 <p class=\"
-\"></p></div>
+\">Whenever I'm not studying, I'm trying out new ways to create software.  Recently I've been looking into HTMX and the simplicity it provides to the development of frontend applications.</p><br>
+<p class=\"
+\">Other things I'm excited about include design, mathematics and hardware.</p></div>
