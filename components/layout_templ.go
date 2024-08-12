@@ -150,7 +150,7 @@ func nav(curr_page string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var11 = []any{"navlink", templ.KV("text-white", curr_page == "/")}
+		var templ_7745c5c3_Var11 = []any{"navlink", templ.KV("text-black dark:text-white", curr_page == "/")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -182,7 +182,7 @@ func nav(curr_page string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var13 = []any{"navlink", templ.KV("text-white", curr_page == "/resume")}
+		var templ_7745c5c3_Var13 = []any{"navlink", templ.KV("text-black dark:text-white", curr_page == "/resume")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var13...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -214,7 +214,7 @@ func nav(curr_page string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var15 = []any{"navlink", templ.KV("text-white", curr_page == "/contact")}
+		var templ_7745c5c3_Var15 = []any{"navlink", templ.KV("text-black dark:text-white", curr_page == "/contact")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var15...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -272,7 +272,7 @@ func Layout(contents templ.Component, title, curr_page string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var18 = []any{"bg-black", "text-white", "flex", "flex-col", "md:flex-row"}
+		var templ_7745c5c3_Var18 = []any{"bg-white", "dark:bg-black", "text-black", "dark:text-white", "flex", "flex-col", "md:flex-row"}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var18...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

@@ -21,13 +21,13 @@ templ nav(curr_page string) {
 			<div class={ "text-lg", "py-2" }>Midas van Veen</div>
 			<ol>
 				<li
-					class={ "navlink", templ.KV("text-white", curr_page=="/") }
+					class={ "navlink", templ.KV("text-black dark:text-white", curr_page=="/") }
 					if curr_page == "/" {
 						aria-current="page"
 					}
 				><a href="/">00. About</a></li>
 				<li
-					class={ "navlink", templ.KV("text-white", curr_page=="/resume") }
+					class={ "navlink", templ.KV("text-black dark:text-white", curr_page=="/resume") }
 					if curr_page == "/resume" {
 						aria-current="page"
 					}
@@ -39,7 +39,7 @@ templ nav(curr_page string) {
 				<!-- 	} -->
 				<!-- ><a href="/gallery">02. Gallery</a></li> -->
 				<li
-					class={ "navlink", templ.KV("text-white", curr_page=="/contact") }
+					class={ "navlink", templ.KV("text-black dark:text-white", curr_page=="/contact") }
 					if curr_page == "/contact" {
 						aria-current="page"
 					}
@@ -51,7 +51,7 @@ templ nav(curr_page string) {
 
 templ Layout(contents templ.Component, title, curr_page string) {
 	@header(title)
-	<body class={ "bg-black", "text-white", "flex", "flex-col", "md:flex-row" }>
+	<body class={ "bg-white", "dark:bg-black", "text-black", "dark:text-white", "flex", "flex-col", "md:flex-row" }>
 		@nav(curr_page)
 		<main class="flex-1">
 			@contents

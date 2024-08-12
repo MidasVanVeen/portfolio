@@ -22,7 +22,6 @@
 
 @layer components {
   .navlink {
-    @apply my-4 md:my-2 transition-all duration-200 font-geist-light text-sm text-neutral-500 hover:text-white hover:underline;
+    @apply my-4 md:my-2 transition-all duration-200 font-geist-light text-sm text-neutral-500 hover:text-black dark:hover:text-white hover:underline;
   }
 }
-

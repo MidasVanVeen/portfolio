@@ -253,7 +253,7 @@ func Resume(entries []db.ResumeEntry) templ.Component {
 					"animate-fade-in",
 					"opacity-0",
 					DelayedAnimation(i),
-					templ.KV("hover:text-white hover:underline", link.URL != ""),
+					templ.KV("hover:text-black dark:hover:text-white hover:underline", link.URL != ""),
 				}
 				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var19...)
 				if templ_7745c5c3_Err != nil {
