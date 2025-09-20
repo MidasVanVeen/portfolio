@@ -42,7 +42,7 @@ func main() {
 	database := db.MustOpen(cfg.DatabaseName)
 
 	resumeStore := db.NewResumeStore(database)
-	projectsStore := db.NewProjectStore(database)
+	// projectsStore := db.NewProjectStore(database)
 	// projectsStore.CreateProject("UNLOCK Biocontroller", "The UNLOCK biocontroller project was initiated to address the lack of flexibility in commercially available biocontrollers used in bioreactor cultivation. Traditional biocontrollers fall short in meeting the specific needs of researchers pushing the boundaries of cultivation techniques and processes.", "https://gitlab.com/m-unlock/pcp/bio-c-kernel")
 	// resumeStore.CreateResumeEntry("UNLOCK Biocontroller", "https://m-unlock.nl/", "2023-present", "Software Engineer", []db.ResumeLink{
 	// 	{Title: "Lead the development of the GUI"},
@@ -52,6 +52,14 @@ func main() {
 	{
 		staticServer := http.FileServer(http.Dir("./static"))
 		r.Handle("/static/*", http.StripPrefix("/static/", staticServer))
+		r.Get("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+				http.ServeFile(w, r, "./static/robots.txt")
+		})
+
+		// For exactly /sitemap.txt
+		r.Get("/sitemap.txt", func(w http.ResponseWriter, r *http.Request) {
+				http.ServeFile(w, r, "./static/sitemap.txt")
+		})
 	}
 
 	r.Group(func(r chi.Router) {
@@ -62,10 +70,10 @@ func main() {
 		)
 
 		r.NotFound(handlers.NotFoundHandler)
-		r.HandleFunc("/", handlers.IndexHandler)
-		r.HandleFunc("/resume", handlers.NewResumeHandler(resumeStore).ServeHTTP)
-		r.HandleFunc("/gallery", handlers.NewGalleryHandler(projectsStore).ServeHTTP)
-		r.HandleFunc("/contact", handlers.ContactHandler)
+		r.Get("/", handlers.IndexHandler)
+		r.Get("/resume", handlers.NewResumeHandler(resumeStore).ServeHTTP)
+		//r.Get("/gallery", handlers.NewGalleryHandler(projectsStore).ServeHTTP)
+		r.Get("/contact", handlers.ContactHandler)
 	})
 
 	killSig := make(chan os.Signal, 1)

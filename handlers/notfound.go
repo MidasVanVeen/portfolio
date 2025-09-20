@@ -7,6 +7,7 @@ import (
 )
 
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusNotFound)
 	c := components.NotFound()
 	err := components.Layout(c, "Not Found", "").Render(r.Context(), w)
 	if err != nil {
