@@ -3,7 +3,7 @@ package components
 //import "github.com/midasvanveen/portfolio/v2/middleware"
 
 templ header(title string, curr_page string) {
-	<head lang="en">
+	<head>
 		<title>{ title }</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -49,12 +49,12 @@ templ nav(curr_page string) {
 						aria-current="page"
 					}
 				><a href="/resume">01. Resume</a></li>
-				<!-- <li -->
-				<!-- 	class={ "navlink", templ.KV("text-white", curr_page=="/gallery") } -->
-				<!-- 	if curr_page == "/gallery" { -->
-				<!-- 		aria-current="page" -->
-				<!-- 	} -->
-				<!-- ><a href="/gallery">02. Gallery</a></li> -->
+				//<li
+				//	class={ "navlink", templ.KV("text-white", curr_page=="/gallery") }
+				//	if curr_page == "/gallery" {
+				//		aria-current="page"
+				//	}
+				//><a href="/gallery">02. Gallery</a></li>
 				<li
 					class={ "navlink", templ.KV("text-black dark:text-white", curr_page=="/contact") }
 					if curr_page == "/contact" {
@@ -68,6 +68,7 @@ templ nav(curr_page string) {
 
 templ Layout(contents templ.Component, title, curr_page string) {
 	<!DOCTYPE html>
+	<html lang="en">
 	@header(title, curr_page)
 	<body class={ "bg-white", "dark:bg-black", "text-black", "dark:text-white", "flex", "flex-col", "md:flex-row" }>
 		@nav(curr_page)
@@ -75,4 +76,5 @@ templ Layout(contents templ.Component, title, curr_page string) {
 			@contents
 		</main>
 	</body>
+	</html>
 }
