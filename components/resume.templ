@@ -10,11 +10,11 @@ css DelayedAnimation(delay int) {
 }
 
 templ Resume(entries []db.ResumeEntry) {
-	<div class={ "font-geist-light", "text-sm", "p-10", "md:py-24" }>
+	<div class={ "font-geist-light", "text-sm", "p-10", "md:py-24", "flex", "flex-col", "gap-8", "lg:gap-5" }>
 		for _, entry := range entries {
-			<div class={ "flex", "flex-col", "md:flex-row" }>
-				<p class={ "mb-3", "md:w-32", "md:mb-0", "animate-fade-in" }>{ entry.TimePeriod }</p>
-				<div class={ "flex", "flex-col", "w-full", "md:w-[540px]", }>
+			<div class={ "flex", "flex-col", "lg:flex-row", "gap-3" }>
+				<p class={ "font-geist-mono-light", "lg:w-[160px]", "animate-fade-in" }>{ entry.TimePeriod }</p>
+				<div class={ "flex", "flex-col", "w-full", "lg:w-[540px]", }>
 					<div class={ "flex", "flex-row", "justify-between", "w-full", "mb-2", "animate-fade-in" }>
 						if entry.URL != "" {
 							<a
@@ -26,27 +26,38 @@ templ Resume(entries []db.ResumeEntry) {
 						}
 						<p>{ entry.Position }</p>
 					</div>
+					<ul class={"list-none", "pl-0", "text-neutral-500"}>
 					for i, link := range entry.Links {
-						<a
-							class={
-								"text-neutral-500",
-								"mt-1",
-								"animate-fade-in",
-								"opacity-0",
-								DelayedAnimation(i),
-								templ.KV("hover:text-black dark:hover:text-white hover:underline", link.URL != ""),
-							}
-							if link.URL != "" {
-								href={ templ.URL(link.URL) }
-							}
-						>
-							if link.URL != "" {
-								{ fmt.Sprintf("%s ↗", link.Title) }
-							} else {
-								{ link.Title }
-							}
-						</a>
+						<li class={
+							"relative",
+							"pl-4",
+							"lg:pl-0",
+							"before:content-['–']",
+							"before:absolute",
+							"before:left-0",
+							"lg:before:left-[-12px]",
+							"animate-fade-in",
+							"opacity-0",
+							"mt-1",
+							DelayedAnimation(i),
+						}>
+							<a
+								class={
+									templ.KV("hover:text-black dark:hover:text-white hover:underline", link.URL != ""),
+								}
+								if link.URL != "" {
+									href={ templ.URL(link.URL) }
+								}
+							>
+								if link.URL != "" {
+									{ fmt.Sprintf("%s ↗", link.Title) }
+								} else {
+									{ link.Title }
+								}
+							</a>
+						</li>
 					}
+					</ul>
 				</div>
 			</div>
 		}

@@ -2,7 +2,7 @@ package components
 
 import "github.com/midasvanveen/portfolio/v2/middleware"
 
-templ header(title string) {
+templ header(title string, curr_page string) {
 	<head>
 		<title>{ title }</title>
 		<meta charset="UTF-8"/>
@@ -12,6 +12,13 @@ templ header(title string) {
 		<script defer src="static/script/alpine.min.js" nonce={ middleware.GetAlpineNonce(ctx) }></script>
 		<link rel="stylesheet" href="static/css/style.min.css"/>
 		<link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
+		<meta name="description" content="Midas van Veen's portfolio website. Software Engineer / Full-Stack Developer.">
+		<meta name="keywords" content="full-stack, backend, frontend, developer, software, engineer, programmer, rust, go, c, python, typescript">
+		<meta name="author" content="Midas van Veen">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href={"https://midasvanveen.com" + curr_page }>
+		<meta http-equiv="Content-Language" content="en">
+		<meta name="referrer" content="no-referrer-when-downgrade">
 	</head>
 }
 
@@ -50,7 +57,7 @@ templ nav(curr_page string) {
 }
 
 templ Layout(contents templ.Component, title, curr_page string) {
-	@header(title)
+	@header(title, curr_page)
 	<body class={ "bg-white", "dark:bg-black", "text-black", "dark:text-white", "flex", "flex-col", "md:flex-row" }>
 		@nav(curr_page)
 		<main class="flex-1">

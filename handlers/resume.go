@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 
+	"slices"
 	components "github.com/midasvanveen/portfolio/v2/components"
 	"github.com/midasvanveen/portfolio/v2/db"
 )
@@ -19,6 +20,7 @@ func NewResumeHandler(store *db.ResumeStore) *ResumeHandler {
 
 func (h *ResumeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	entries, err := h.store.GetAllResumeEntries()
+	slices.Reverse(entries)
 	if err != nil {
 		http.Error(w, "Error fetching from db", http.StatusInternalServerError)
 		return
