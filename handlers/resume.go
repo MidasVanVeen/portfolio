@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log/slog"
 	"net/http"
 
 	"slices"
@@ -29,6 +30,7 @@ func (h *ResumeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c := components.Resume(entries)
 	err = components.Layout(c, "Resume", "/resume").Render(r.Context(), w)
 	if err != nil {
+		slog.Error("failed to render template", "path", r.URL.Path, "error", err)
 		http.Error(w, "Error rendering template", http.StatusInternalServerError)
 		return
 	}
