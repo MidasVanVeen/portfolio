@@ -13,7 +13,7 @@ templ:
 	templ generate
 
 tailwindcss:
-	./tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify
+	tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify
 
 tailwindcss-watch:
-	./tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify --watch
+	tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify --watch
